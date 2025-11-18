@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Retorno - Sua Empresa</title>
+  <link rel="stylesheet" href="CSS/Calculadora.css">
+</head>
+<body>
+
+<button class="back-btn" onclick="voltarMenu()">
+  Voltar ao Menu
+</button>
+
+<div class="container">
+  <div class="header">
+    <h1>Dados da sua empresa</h1>
+    <p class="subtitle">Preencha as informações para calcular seu retorno</p>
+  </div>
+
+  <form class="form-container">
+    <!-- Pra seleciona os resíduos -->
+    <div class="form-section">
+      <h2>Tipo de resíduo</h2>
+      <p class="section-description">Selecione o tipo de resíduo.</p>
+
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="organico">
+          <span class="radio-custom"></span>
+          Orgânico
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="plastico">
+          <span class="radio-custom"></span>
+          Plástico
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="papel">
+          <span class="radio-custom"></span>
+          Papel
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="metal">
+          <span class="radio-custom"></span>
+          Metal
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="vidro">
+          <span class="radio-custom"></span>
+          Vidro
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="residuo" value="eletronico">
+          <span class="radio-custom"></span>
+          Eletrônico
+        </label>
+      </div>
+    </div>
+
+    <!-- Pra colocar o volume em toneladas-->
+    <div class="form-section">
+      <h2>Volume mensal (toneladas)</h2>
+      <p class="section-description">Ex: 10</p>
+
+      <div class="input-group">
+        <input type="number" id="volume" class="form-input" placeholder="Digite o volume em toneladas" min="0" step="0.1">
+        <span class="input-suffix">ton</span>
+      </div>
+    </div>
+
+    <!-- Pra colocar o custo por mês -->
+    <div class="form-section">
+      <h2>Custo de Coleta Mensal (R$)</h2>
+      <p class="section-description">Ex: 500</p>
+
+      <div class="input-group">
+        <span class="input-prefix">R$</span>
+        <input type="number" id="custo" class="form-input" placeholder="Digite o custo mensal" min="0">
+      </div>
+    </div>
+
+    <!-- Botão -->
+    <button type="submit" class="calculate-btn">
+      Calcular Retorno
+    </button>
+  </form>
+</div>
+<!-- Nico, tem que por o script do cálculo daí -->
+<script src="Functions.js"></script>
+</body>
+</html>
