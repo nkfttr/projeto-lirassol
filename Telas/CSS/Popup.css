@@ -1,0 +1,157 @@
+/* Estilos do Pop-up */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: popupFadeIn 0.3s ease-out;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 22px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.popup-body {
+    padding: 30px;
+}
+
+.popup-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #7f8c8d;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: #844dc2;
+    border-bottom-color: #844dc2;
+    font-weight: 600;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.tab-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.tab-content ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.tab-content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.accept-btn {
+    background-color: #844dc2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.accept-btn:hover {
+    background-color: #461e83;
+}
+
+/* Estilos para os botões de termos */
+.termos-btn {
+    background: none;
+    border: none;
+    color: #844dc2;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    transition: color 0.3s;
+}
+
+.termos-btn:hover {
+    color: #461e83;
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+}
