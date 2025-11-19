@@ -59,4 +59,74 @@ function realizarCadastro() {
 
     // Redirecionar pro login (Tenho que fazer a parte do login ainda kkkkk)
     window.location.href = 'PrimeiraTela.html';
+
 }
+
+// ---------------------------------------------------------------------------------------\\
+// Controle do Pop-Up
+document.addEventListener('DOMContentLoaded', function() {
+    const termosBtn = document.getElementById('termos-btn');
+    const politicaBtn = document.getElementById('politica-btn');
+    const termsPopup = document.getElementById('termsPopup');
+    const closePopup = document.getElementById('closePopup');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const acceptTermsBtn = document.getElementById('acceptTerms');
+    const acceptPrivacyBtn = document.getElementById('acceptPrivacy');
+    const termosCheckbox = document.getElementById('termos');
+
+    termosBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        termsPopup.style.display = 'flex';
+        document.querySelector('.tab-btn[data-tab="terms"]').click();
+    });
+
+    politicaBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        termsPopup.style.display = 'flex';
+        document.querySelector('.tab-btn[data-tab="privacy"]').click();
+    });
+
+    closePopup.addEventListener('click', function() {
+        termsPopup.style.display = 'none';
+    });
+
+    termsPopup.addEventListener('click', function(e) {
+        if (e.target === termsPopup) {
+            termsPopup.style.display = 'none';
+        }
+    });
+
+    // Controle das abas
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            this.classList.add('active');
+
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(`${tabId}-content`).classList.add('active');
+        });
+    });
+
+    acceptTermsBtn.addEventListener('click', function() {
+        alert('Você aceitou os Termos de Uso');
+        termsPopup.style.display = 'none';
+    });
+
+    acceptPrivacyBtn.addEventListener('click', function() {
+        alert('Você aceitou a Política de Privacidade');
+        termsPopup.style.display = 'none';
+    });
+
+    document.querySelector('.cadastro-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (termosCheckbox.checked) {
+            alert('Cadastro realizado com sucesso!');
+        } else {
+            alert('Você precisa aceitar os termos e a política de privacidade');
+        }
+    });
+});
