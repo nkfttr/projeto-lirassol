@@ -134,6 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // ---------------------------------------------------------------------------------------\\
 // tabela de preços médios de reciclagem - R$/tonelada
 const precosReciclagem = {
+    //RESIDUO: R$ POR TONELADA
+    // organico: 120R$ /tonelada
     organico: 120,   // composto orgânico
     plastico: 900,
     papel: 850,
@@ -160,18 +162,20 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // pegar os valores
+        // pegar os valores do residuo selecionado
         const tipoResiduo = document.querySelector('input[name="residuo"]:checked').value;
         const volume = parseFloat(document.getElementById('volume').value);
         const custoColeta = parseFloat(document.getElementById('custo').value);
 
         // calculos financeiros
+        // calcula com base nos valores do produto
         const precoTon = precosReciclagem[tipoResiduo];
         const receitaMensal = volume * precoTon;
         const lucroMensal = receitaMensal - custoColeta;
         const lucroAnual = lucroMensal * 12;
 
         // calculos ambientais
+        //calcula com base nos valores ambientais descritos em const fatoresAmbientais
         const { co2, energia } = fatoresAmbientais[tipoResiduo];
         const co2Reduzido = (volume * co2).toFixed(1);
         const energiaPoupada = (volume * energia).toFixed(1);
