@@ -1,5 +1,5 @@
 function voltarMenu() {
-    window.location.href="PrimeiraTela.html"
+    window.location.href="\\projeto-lirassol\\index.html"
 }
 // ---------------------------------------------------------------------------------------\\
 document.addEventListener('DOMContentLoaded', function() {
@@ -128,5 +128,70 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             alert('Você precisa aceitar os termos e a política de privacidade');
         }
+    });
+});
+
+// ---------------------------------------------------------------------------------------\\
+// tabela de preços médios de reciclagem - R$/tonelada
+const precosReciclagem = {
+    organico: 120,   // composto orgânico
+    plastico: 900,
+    papel: 850,
+    metal: 2500,
+    vidro: 180,
+    eletronico: 3500
+};
+
+// fatores ambientais
+// toneladas co2 e MWh por tonelada reciclada
+const fatoresAmbientais = {
+    organico: { co2: 0.05, energia: 0.2 },
+    plastico: { co2: 2.5, energia: 2.8 },
+    papel:    { co2: 1.1, energia: 1.9 },
+    metal:    { co2: 4.0, energia: 8.5 },
+    vidro:    { co2: 0.3, energia: 0.4 },
+    eletronico: { co2: 6.0, energia: 12.0 }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('calculadoraForm');
+    const resultado = document.getElementById('resultado');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // pegar os valores
+        const tipoResiduo = document.querySelector('input[name="residuo"]:checked').value;
+        const volume = parseFloat(document.getElementById('volume').value);
+        const custoColeta = parseFloat(document.getElementById('custo').value);
+
+        // calculos financeiros
+        const precoTon = precosReciclagem[tipoResiduo];
+        const receitaMensal = volume * precoTon;
+        const lucroMensal = receitaMensal - custoColeta;
+        const lucroAnual = lucroMensal * 12;
+
+        // calculos ambientais
+        const { co2, energia } = fatoresAmbientais[tipoResiduo];
+        const co2Reduzido = (volume * co2).toFixed(1);
+        const energiaPoupada = (volume * energia).toFixed(1);
+
+        // preencher resultado
+        document.getElementById('lucroMensal').textContent =
+            `R$ ${lucroMensal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})} por mês`;
+        document.getElementById('lucroMensal').style.color = lucroMensal >= 0 ? '#145e24' : '#dc3545';
+
+        document.getElementById('lucroAnual').textContent =
+            `R$ ${lucroAnual.toLocaleString('pt-BR', {minimumFractionDigits: 2})} retorno anual`;
+
+        document.getElementById('co2').textContent = `${co2Reduzido.replace('.', ',')}t`;
+        document.getElementById('energia').textContent = `${energiaPoupada.replace('.', ',')} MWh`;
+        document.getElementById('residuoTotal').textContent = `${volume.toFixed(1).replace('.', ',')}t resíduos reciclados mensalmente`;
+
+        // mostrar resultado e rolar
+        resultado.style.display = 'block';
+        setTimeout(() => {
+            resultado.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     });
 });

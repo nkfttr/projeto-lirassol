@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Retorno - Sua Empresa</title>
+  <title>Calculadora de Lucro - Reciclagem</title>
   <link rel="stylesheet" href="CSS/Calculadora.css">
 </head>
 <body>
@@ -18,80 +18,95 @@
     <p class="subtitle">Preencha as informações para calcular seu retorno</p>
   </div>
 
-  <form class="form-container">
-    <!-- Pra seleciona os resíduos -->
+  <form id="calculadoraForm" class="form-container">
+    <!-- Tipo de resíduo -->
     <div class="form-section">
       <h2>Tipo de resíduo</h2>
       <p class="section-description">Selecione o tipo de resíduo.</p>
-
       <div class="radio-group">
         <label class="radio-option">
-          <input type="radio" name="residuo" value="organico">
-          <span class="radio-custom"></span>
-          Orgânico
+          <input type="radio" name="residuo" value="organico" required>
+          <span class="radio-custom"></span> Orgânico
         </label>
-
         <label class="radio-option">
           <input type="radio" name="residuo" value="plastico">
-          <span class="radio-custom"></span>
-          Plástico
+          <span class="radio-custom"></span> Plástico
         </label>
-
         <label class="radio-option">
           <input type="radio" name="residuo" value="papel">
-          <span class="radio-custom"></span>
-          Papel
+          <span class="radio-custom"></span> Papel
         </label>
-
         <label class="radio-option">
           <input type="radio" name="residuo" value="metal">
-          <span class="radio-custom"></span>
-          Metal
+          <span class="radio-custom"></span> Metal
         </label>
-
         <label class="radio-option">
           <input type="radio" name="residuo" value="vidro">
-          <span class="radio-custom"></span>
-          Vidro
+          <span class="radio-custom"></span> Vidro
         </label>
-
         <label class="radio-option">
           <input type="radio" name="residuo" value="eletronico">
-          <span class="radio-custom"></span>
-          Eletrônico
+          <span class="radio-custom"></span> Eletrônico
         </label>
       </div>
     </div>
 
-    <!-- Pra colocar o volume em toneladas-->
+    <!-- Volume mensal -->
     <div class="form-section">
       <h2>Volume mensal (toneladas)</h2>
       <p class="section-description">Ex: 10</p>
-
       <div class="input-group">
-        <input type="number" id="volume" class="form-input" placeholder="Digite o volume em toneladas" min="0" step="0.1">
+        <input type="number" id="volume" class="form-input" placeholder="Digite o volume em toneladas" min="0" step="0.1" required>
         <span class="input-suffix">ton</span>
       </div>
     </div>
 
-    <!-- Pra colocar o custo por mês -->
+    <!-- Custo de coleta mensal -->
     <div class="form-section">
       <h2>Custo de Coleta Mensal (R$)</h2>
       <p class="section-description">Ex: 500</p>
-
       <div class="input-group">
         <span class="input-prefix">R$</span>
-        <input type="number" id="custo" class="form-input" placeholder="Digite o custo mensal" min="0">
+        <input type="number" id="custo" class="form-input" placeholder="Digite o custo mensal" min="0" required>
       </div>
     </div>
 
-    <!-- Botão -->
     <button type="submit" class="calculate-btn">
       Calcular Retorno
     </button>
   </form>
+
+  <!-- ===================== RESULTADO (inicialmente oculto) ===================== -->
+  <div id="resultado" class="resultado-container" style="display: none; margin-top: 60px;">
+    <div class="cards-wrapper">
+      <!-- Card Lucro Financeiro -->
+      <div class="card lucro">
+        <div class="card-icon">💲</div>
+        <h3>Lucro Financeiro</h3>
+        <p class="valor-mensal" id="lucroMensal"></p>
+        <p class="valor-anual" id="lucroAnual"></p>
+      </div>
+
+      <!-- Card Impacto Ambiental -->
+      <div class="card impacto">
+        <div class="card-icon">♻️</div>
+        <h3>Impacto Ambiental</h3>
+        <div class="impacto-grid">
+          <div>
+            <p class="impacto-valor" id="co2"></p>
+            <p class="impacto-legenda">CO² reduzido/mês</p>
+          </div>
+          <div>
+            <p class="impacto-valor" id="energia"></p>
+            <p class="impacto-legenda">Energia poupada/mês</p>
+          </div>
+        </div>
+        <p class="residuo-reciclado" id="residuoTotal"></p>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- Nico, tem que por o script do cálculo daí -->
+
 <script src="Functions.js"></script>
 </body>
 </html>
