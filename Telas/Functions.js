@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('energia').textContent = `${energiaPoupada.replace('.', ',')} MWh`;
         document.getElementById('residuoTotal').textContent = `${volume.toFixed(1).replace('.', ',')}t resíduos reciclados mensalmente`;
 
-        // mostrar resultado e rolar
+        // rolar suavepinto para baixo
         resultado.style.display = 'block';
         setTimeout(() => {
             resultado.scrollIntoView({ behavior: 'smooth', block: 'center' });
